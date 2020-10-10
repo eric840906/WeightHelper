@@ -1,5 +1,8 @@
 <template>
-<div class="container">
+<div>
+  <Navbar></Navbar>
+  <hr style="margin-top: 71px; border-top: none">
+  <div class="container">
   <div class="row">
     <div class="col-md-6 foodList">
       <h1>食物查詢</h1>
@@ -101,15 +104,18 @@
     </div>
   </div>
 </div>
+</div>
 </template>
 
 <script>
 import Counter from 'vue-countup-v2'
 import Chart from '@/components/chart.vue'
+import Navbar from '@/components/navbar.vue'
 export default {
   components: {
     Chart,
-    Counter
+    Counter,
+    Navbar
   },
   data () {
     return {
