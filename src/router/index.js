@@ -15,6 +15,11 @@ const routes = [
     component: () => import('../views/intro.vue'),
     children: [
       {
+        path: '/startform',
+        name: 'startForm',
+        component: () => import('../components/forms/startForm.vue')
+      },
+      {
         path: '/askform1',
         name: 'askFrom1',
         component: () => import('../components/forms/askForm1.vue')

@@ -7,7 +7,7 @@
         <h1 class="name">WEIGHT</h1>
         <span class="subName">HELPER</span>
       </div>
-      <router-link to="/askForm1" class="startbtn">GET STARTED</router-link>
+      <router-link to="/startForm" class="startbtn">GET STARTED</router-link>
     </section>
     <router-view></router-view>
   </div>
