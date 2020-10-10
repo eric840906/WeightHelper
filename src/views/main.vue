@@ -1,0 +1,38 @@
+<template>
+  <div>
+    <Navbar></Navbar>
+    <hr style="margin-top: 71px; border-top: none">
+     <router-view/>
+  </div>
+</template>
+
+<script>
+import Navbar from '@/components/navbar.vue'
+export default {
+  components: {
+    Navbar
+  },
+  data () {
+    return {
+      food: []
+    }
+  },
+  methods: {
+    getFood () {
+      const vm = this
+      const api = 'https://fierce-coast-04542.herokuapp.com/posts'
+      const request = new XMLHttpRequest()
+      request.open('GET', api)
+      request.send()
+      request.onload = function () {
+        console.log(this)
+        console.log(JSON.parse(this.response))
+        vm.food = JSON.parse(this.response)
+      }
+    }
+  },
+  created () {
+    this.getFood()
+  }
+}
+</script>
