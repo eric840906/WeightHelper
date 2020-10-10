@@ -1,7 +1,6 @@
 <template>
   <div>
     <Navbar></Navbar>
-    <hr style="margin-top: 71px; border-top: none">
     <section class="banner">
       <div class="title">
         <h1 class="name">WEIGHT</h1>
@@ -26,7 +25,7 @@ export default {
 <style lang="scss">
   .banner{
     background: linear-gradient(329deg, #000000d4 50%, transparent 50%) center center/ 100% 100%, url(https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80);
-    height: 90.5vh;
+    height: 100vh;
     background-repeat: no-repeat;
     background-position: center;
     display: flex;

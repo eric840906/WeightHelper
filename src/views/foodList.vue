@@ -1,8 +1,7 @@
 <template>
 <div>
   <Navbar></Navbar>
-  <hr style="margin-top: 71px; border-top: none">
-  <div class="container">
+  <div class="container" style="padding-top: 71px;">
   <div class="row">
     <div class="col-md-6 foodList">
       <h1>食物查詢</h1>
