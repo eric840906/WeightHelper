@@ -94,7 +94,7 @@ export default {
 .hamburger{
   height: 50px;
   position: fixed;
-  top: 6px;
+  top: 9px;
   right: 13px;
   z-index: 999;
   flex-direction: column;
