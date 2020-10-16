@@ -50,10 +50,10 @@
     <div class="col-md-6">
       <h1>今日飲食</h1>
       <ul class="todayFoods">
-        <li v-for="item in eatFoods" :key="item.index">{{item.food}}: {{item.weight}}g</li>
+        <li v-for="item in eatFoods" :key="item.id">{{item.food}}: {{item.weight}}g</li>
       </ul>
       <ul class="resultNumbers">
-        <li :class="[calculateList.calories > target.calories? 'text-danger' : calculateList.calories < target.calories-200? 'text-danger' : 'text-success']">總熱量:
+        <li :class="caloriesNumber">總熱量:
         <Counter
           :delay="delay"
           :endVal="Math.round(calculateList.calories, 2)"
@@ -63,7 +63,7 @@
         </li>
         <li v-if="calculateList.calories < target.calories">距離目標還有約{{Math.round(target.calories - calculateList.calories)}} kcal</li>
         <li v-else class="text-danger">熱量超標啦</li>
-        <li :class="[calculateList.protein > target.protein * 1.2? 'text-danger' : calculateList.protein < target.protein * 0.8? 'text-danger' : 'text-success']">總蛋白質:
+        <li :class="proteinNumber">總蛋白質:
         <Counter
           :delay="delay"
           :endVal="Math.round(calculateList.protein,2)"
@@ -72,7 +72,7 @@
         /> g</li>
         <li v-if="calculateList.protein < target.protein * 1.2">距離上限還有約{{Math.round(target.protein * 1.2 - calculateList.protein)}} g</li>
         <li v-else class="text-danger">蛋白質超標啦</li>
-        <li :class="[calculateList.carbo > target.carbo * 1.2? 'text-danger' : calculateList.carbo < target.carbo * 0.8? 'text-danger' : 'text-success']">總碳水:
+        <li :class="carboNumber">總碳水:
         <Counter
           :delay="delay"
           :endVal="Math.round(calculateList.carbo, 2)"
@@ -81,7 +81,7 @@
         /> g</li>
         <li v-if="calculateList.carbo < target.carbo * 1.2">距離上限還有約{{Math.round(target.carbo * 1.2 - calculateList.carbo)}} g</li>
         <li v-else class="text-danger">碳水超標啦</li>
-        <li class="text-success" :class="{'text-danger': calculateList.fat > target.fat || calculateList.fat < target.fat * 0.5}">總脂肪:
+        <li :class="fatNumber">總脂肪:
         <Counter
           :delay="delay"
           :endVal="Math.round(calculateList.fat, 2)"
@@ -318,6 +318,21 @@ export default {
     this.getList()
     this.getCalc()
     this.preDraw()
+  },
+  computed: {
+    caloriesNumber () {
+      return this.calculateList.calories > this.target.calories ? 'text-danger' : this.calculateList.calories < this.target.calories - 200 ? 'text-danger' : 'text-success'
+    },
+    proteinNumber () {
+      return this.calculateList.protein > this.target.protein * 1.2 ? 'text-danger' : this.calculateList.protein < this.target.protein * 0.8 ? 'text-danger' : 'text-success'
+    },
+    carboNumber () {
+      return this.calculateList.carbo > this.target.carbo * 1.2 ? 'text-danger' : this.calculateList.carbo < this.target.carbo * 0.8 ? 'text-danger' : 'text-success'
+    },
+    fatNumber () {
+      return this.calculateList.fat > this.target.fat || this.calculateList.fat < this.target.fat * 0.5 ? 'text-danger' : 'text-success'
+      // 'text-danger': calculateList.fat > target.fat || calculateList.fat < target.fat * 0.5
+    }
   }
 }
 </script>
