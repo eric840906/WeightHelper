@@ -1,11 +1,21 @@
 <template>
   <div id="app">
+    <Navbar></Navbar>
     <router-view/>
   </div>
 </template>
 
 <script>
+import Navbar from '@/components/navbar.vue'
 export default {
+  components: {
+    Navbar
+  },
+  mounted () {
+    if (window.scrollY > 0) {
+      document.querySelector('Navbar').classList.add('.fixbar')
+    }
+  }
 }
 </script>
 
@@ -20,5 +30,8 @@ a{
   &:hover{
     text-decoration: none;
   }
+}
+.fixbar{
+  position: fixed;
 }
 </style>

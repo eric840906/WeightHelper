@@ -1,17 +1,11 @@
 <template>
   <div>
-    <Navbar></Navbar>
-    <hr style="margin-top: 71px; border-top: none">
      <router-view/>
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/navbar.vue'
 export default {
-  components: {
-    Navbar
-  },
   data () {
     return {
       food: []

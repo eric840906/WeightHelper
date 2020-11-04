@@ -28,10 +28,33 @@
 
 <script>
 export default {
+  mounted () {
+    window.addEventListener('scroll', function () {
+      console.log(window.scrollY)
+      if (window.scrollY > 0) {
+        this.document.querySelector('.top-nav').classList.add('fixbar')
+      } else {
+        this.document.querySelector('.top-nav').classList.remove('fixbar')
+      }
+    })
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', function () {
+      console.log(window.scrollY)
+      if (window.scrollY > 0) {
+        this.document.querySelector('.top-nav').classList.add('fixbar')
+      } else {
+        this.document.querySelector('.top-nav').classList.remove('fixbar')
+      }
+    })
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+.fixbar{
+  position: fixed;
+}
 .top-links {
   font-size: 18px;
 }
@@ -42,7 +65,6 @@ export default {
   font-size: 30px;
 }
 .top-nav{
-  position: fixed;
   height: 7vh;
   display: flex;
   justify-content: space-between;
@@ -61,6 +83,7 @@ export default {
     }
   }
   .links{
+    z-index: 1;
     font-size: 18px;
     list-style: none;
     margin: 0;

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar></Navbar>
     <section class="banner">
       <div class="title">
         <h1 class="name">WEIGHT</h1>
@@ -14,11 +13,7 @@
 
 <script>
 // @ is an alias to /src
-import Navbar from '@/components/navbar.vue'
 export default {
-  components: {
-    Navbar
-  }
 }
 </script>
 
