@@ -5,6 +5,9 @@ import 'bootstrap'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import animated from 'animate.css'
+
+Vue.use(animated)
 
 library.add(faPlus, faTimes)
 Vue.component('font-awesome-icon', FontAwesomeIcon)

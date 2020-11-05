@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
+    <div style="padding-top: 7vh"></div>
     <router-view/>
   </div>
 </template>
@@ -10,11 +11,6 @@ import Navbar from '@/components/navbar.vue'
 export default {
   components: {
     Navbar
-  },
-  mounted () {
-    if (window.scrollY > 0) {
-      document.querySelector('Navbar').classList.add('.fixbar')
-    }
   }
 }
 </script>
@@ -31,7 +27,5 @@ a{
     text-decoration: none;
   }
 }
-.fixbar{
-  position: fixed;
-}
+
 </style>

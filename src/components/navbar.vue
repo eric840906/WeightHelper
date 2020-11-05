@@ -28,26 +28,33 @@
 
 <script>
 export default {
-  mounted () {
-    window.addEventListener('scroll', function () {
-      console.log(window.scrollY)
-      if (window.scrollY > 0) {
-        this.document.querySelector('.top-nav').classList.add('fixbar')
-      } else {
-        this.document.querySelector('.top-nav').classList.remove('fixbar')
-      }
-    })
-  },
-  beforeDestroy () {
-    window.removeEventListener('scroll', function () {
-      console.log(window.scrollY)
-      if (window.scrollY > 0) {
-        this.document.querySelector('.top-nav').classList.add('fixbar')
-      } else {
-        this.document.querySelector('.top-nav').classList.remove('fixbar')
-      }
-    })
-  }
+  // directives: {
+  //   pin: {
+  //     inserted (el) {
+  //       el.classList.add('fixbar')
+  //     }
+  //   }
+  // }
+  // mounted () {
+  //   window.addEventListener('scroll', function () {
+  //     console.log(window.scrollY)
+  //     if (window.scrollY > 0) {
+  //       this.document.querySelector('.top-nav').classList.add('fixbar')
+  //     } else {
+  //       this.document.querySelector('.top-nav').classList.remove('fixbar')
+  //     }
+  //   })
+  // },
+  // beforeDestroy () {
+  //   window.removeEventListener('scroll', function () {
+  //     console.log(window.scrollY)
+  //     if (window.scrollY > 0) {
+  //       this.document.querySelector('.top-nav').classList.add('fixbar')
+  //     } else {
+  //       this.document.querySelector('.top-nav').classList.remove('fixbar')
+  //     }
+  //   })
+  // }
 }
 </script>
 
@@ -65,6 +72,7 @@ export default {
   font-size: 30px;
 }
 .top-nav{
+  position: fixed;
   height: 7vh;
   display: flex;
   justify-content: space-between;
