@@ -2,7 +2,9 @@
   <div id="app">
     <Navbar></Navbar>
     <div style="padding-top: 7vh"></div>
-    <router-view/>
+    <transition name="fade">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -26,6 +28,23 @@ a{
   &:hover{
     text-decoration: none;
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: all 0.3s;
+    transition-duration: .25s;
+  }
+
+.fade-enter-active {
+  transition-delay: .25s;
+}
+.fade-enter{
+  opacity: 0;
+  transform: translateX(-200px);
+}
+.fade-leave-active {
+  opacity: 0;
+  transform: translateX(200px);
 }
 
 </style>

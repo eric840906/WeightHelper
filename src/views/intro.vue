@@ -6,10 +6,10 @@
         <span class="subName">HELPER</span>
       </div>
       <router-link to="/startForm" class="startbtn">GET STARTED</router-link>
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
     </section>
-    <transition name="fade">
-      <router-view></router-view>
-    </transition>
   </div>
 </template>
 
@@ -20,22 +20,6 @@ export default {
 </script>
 
 <style lang="scss">
-  .fade-enter-active, .fade-leave-active {
-    transition: all 0.3s;
-    transition-duration: .25s;
-  }
-
-  .fade-enter-active {
-    transition-delay: .25s;
-  }
-  .fade-enter{
-    opacity: 0;
-    transform: translateX(-500px);
-  }
-  .fade-leave-active {
-    opacity: 0;
-    transform: translateX(500px);
-  }
   .banner{
     background: linear-gradient(329deg, #000000d4 50%, transparent 50%) center center/ 100% 100%, url(https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80);
     height: 93vh;
