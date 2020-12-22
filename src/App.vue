@@ -17,6 +17,9 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/all.scss';
+#app{
+  font-family: 'Noto Sans TC', Avenir, Helvetica, Arial, sans-serif;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

@@ -6,6 +6,7 @@ const { reactiveProp } = mixins
 export default {
   extends: Pie,
   mixins: [reactiveProp],
+  props: ['options'],
   mounted () {
     this.renderChart(this.chartData, this.options)
   }
