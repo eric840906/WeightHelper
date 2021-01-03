@@ -383,42 +383,41 @@ export default {
           },
           onUploadProgress: async (progressEvent) => {
             // const percentCompleted = Math.floor((progressEvent.loaded * 100) / progressEvent.total)
-            const statusReset = async () => {
-              await setTimeout(() => { this.recordBtn.status = true }, 1000)
-              await setTimeout(() => { this.recordBtn.text = '登錄結果' }, 1000)
-            }
             this.recordBtn.text = '上傳中'
             this.recordBtn.status = false
             console.log(progressEvent.loaded)
-            if (progressEvent.loaded === 100) {
-              console.log('end')
-              this.recordBtn.text = '上傳完成'
-              statusReset()
-              this.$modal.show('dialog', {
-                title: '成功登錄今日計算結果',
-                text: '要查看紀錄嗎?',
-                buttons: [
-                  {
-                    title: 'YES',
-                    handler: () => {
-                      this.$modal.hide('dialog')
-                      this.$router.push({ path: '/analyze' })
-                    }
-                  },
-                  {
-                    title: 'NO',
-                    handler: () => {
-                      this.$modal.hide('dialog')
-                    }
-                  }
-                ]
-              })
-            }
             // do whatever you like with the percentage complete
             // maybe dispatch an action that will update a progress bar or something
           }
         })
-        console.log(response)
+        if (response.status === 200) {
+          const statusReset = async () => {
+            await setTimeout(() => { this.recordBtn.status = true }, 1000)
+            await setTimeout(() => { this.recordBtn.text = '登錄結果' }, 1000)
+          }
+          console.log('end')
+          this.recordBtn.text = '上傳完成'
+          statusReset()
+          this.$modal.show('dialog', {
+            title: '成功登錄今日計算結果',
+            text: '要查看紀錄嗎?',
+            buttons: [
+              {
+                title: 'YES',
+                handler: () => {
+                  this.$modal.hide('dialog')
+                  this.$router.push({ path: '/analyze' })
+                }
+              },
+              {
+                title: 'NO',
+                handler: () => {
+                  this.$modal.hide('dialog')
+                }
+              }
+            ]
+          })
+        }
       } catch (error) {
         if (error.response.data === 'Invalid token, please relog') this.$store.state.token = null
         this.recordBtn.text = error.response.data
