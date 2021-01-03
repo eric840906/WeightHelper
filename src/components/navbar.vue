@@ -1,6 +1,5 @@
 <template>
   <div>
-    <input type="checkbox" name="" id="menu-ctrl" style="display: none;">
     <header>
       <nav class="top-nav">
         <div class="logo">
@@ -10,51 +9,31 @@
           >WHelper
           </router-link>
         </div>
-        <ul class="links">
-          <li><router-link class="nav-item nav-link" to="/">Home</router-link></li>
-          <li><router-link class="nav-item nav-link" to="/foodlist">飲食計算</router-link></li>
-        </ul>
       </nav>
-      <label for="menu-ctrl" class="triggerContainer" style="position: absolute">
-          <div class="hamburger">
+      <button for="menu-ctrl" class="triggerContainer" style="position: absolute"  @click.prevent='drawerToggle'>
+          <div class="hamburger" :class="{'active': toggle}">
             <div></div>
             <div></div>
             <div></div>
           </div>
-      </label>
+      </button>
     </header>
   </div>
 </template>
 
 <script>
 export default {
-  // directives: {
-  //   pin: {
-  //     inserted (el) {
-  //       el.classList.add('fixbar')
-  //     }
-  //   }
-  // }
-  // mounted () {
-  //   window.addEventListener('scroll', function () {
-  //     console.log(window.scrollY)
-  //     if (window.scrollY > 0) {
-  //       this.document.querySelector('.top-nav').classList.add('fixbar')
-  //     } else {
-  //       this.document.querySelector('.top-nav').classList.remove('fixbar')
-  //     }
-  //   })
-  // },
-  // beforeDestroy () {
-  //   window.removeEventListener('scroll', function () {
-  //     console.log(window.scrollY)
-  //     if (window.scrollY > 0) {
-  //       this.document.querySelector('.top-nav').classList.add('fixbar')
-  //     } else {
-  //       this.document.querySelector('.top-nav').classList.remove('fixbar')
-  //     }
-  //   })
-  // }
+  props: {
+    toggle: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    drawerToggle () {
+      this.$emit('drawerToggle')
+    }
+  }
 }
 </script>
 
@@ -66,6 +45,7 @@ export default {
   font-size: 18px;
 }
 .navbar-brand {
+  font-family: 'Bungee', cursive;
   background-color: transparent;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -80,6 +60,7 @@ export default {
   z-index: 2;
   transition: 0.5s;
   background-color: black;
+  box-shadow: 0 4px 5px 0px #0000005e;
   a{
     color: white;
   }
@@ -111,12 +92,12 @@ export default {
   }
 }
 .triggerContainer{
-  display: none;
+  display: block;
 }
 .hamburger{
-  height: 50px;
+  height: 5vh;
   position: fixed;
-  top: 12px;
+  top: 1vh;
   right: 13px;
   z-index: 999;
   flex-direction: column;
@@ -149,6 +130,23 @@ export default {
     }
   }
 }
+.hamburger.active{
+  div{
+    &:first-child{
+      transform: translateX(1000%);
+    }
+    &:nth-child(2){
+      transform: rotate(405deg);
+      border-color: white;
+      position: absolute;
+    }
+    &:last-child{
+      position: absolute;
+      border-color: white;
+      transform: rotate(-225deg);
+    }
+  }
+}
 
 @media (max-width: 425px) {
   .top-nav{
@@ -166,31 +164,6 @@ export default {
   }
   .triggerContainer{
     display: block;
-  }
-  #menu-ctrl:checked ~header {
-    .links{
-      transform: translateY(0);
-      display: block;
-      opacity: 1;
-      height: 25vh;
-    }
-    .hamburger{
-      div{
-        &:first-child{
-          transform: translateX(1000%);
-        }
-        &:nth-child(2){
-          transform: rotate(405deg);
-          border-color: white;
-          position: absolute;
-        }
-        &:last-child{
-          position: absolute;
-          border-color: white;
-          transform: rotate(-225deg);
-        }
-      }
-    }
   }
 }
 

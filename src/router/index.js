@@ -55,6 +55,17 @@ const routes = [
     path: '/foodlist',
     name: 'foodList',
     component: () => import('../views/foodList.vue')
+  },
+  {
+    path: '/analyze',
+    name: 'analyze',
+    meta: { requiresAuth: true },
+    component: () => import('../views/analyze.vue')
+  },
+  {
+    path: '/error',
+    name: 'error',
+    component: () => import('../views/relog.vue')
   }
 ]
 

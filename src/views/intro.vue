@@ -29,6 +29,7 @@ export default {
     justify-content: flex-end;
     align-items: center;
     .title{
+      font-family: 'Bungee', cursive;
       color: white;
       width: 100%;
       text-align: end;
@@ -42,22 +43,22 @@ export default {
     }
   }
   .startbtn{
+    font-family: 'Bungee', cursive;
     color: white;
     position: absolute;
     bottom: 10%;
     right: 10%;
     background: #000000cf;
     border-radius: 8px;
-    width: 118px;
+    padding: 0px 10px;
     line-height: 3;
     text-align: center;
-    transition: 0.3s linear;
+    transition: 0.2s ease-out;
     animation: flash 0.85s infinite;
     &:hover{
       color: white;
       text-decoration: none;
-      width: 140px;
-      font-size: 20px;
+      transform: scale(1.3);
     }
   }
   @keyframes flash {
