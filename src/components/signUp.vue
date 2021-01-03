@@ -27,7 +27,7 @@
         <label for="" style="color: #29aa1d;"><check-icon/>註冊成功</label>
       </div>
       <div class="form-row">
-        <input type="submit" value="Log in" class="form-btn">
+        <input type="submit" value="Sign up" class="form-btn">
       </div>
     </form>
   </div>
