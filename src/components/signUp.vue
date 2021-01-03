@@ -21,7 +21,7 @@
         </label>
       </div>
       <div v-show="errorText">
-        <label for="" style="color: #ff4436;"><alert-icon/>註冊失敗</label>
+        <label for="" style="color: #ff4436;"><alert-icon/>{{errorText}}</label>
       </div>
       <div v-show="successText">
         <label for="" style="color: #29aa1d;"><check-icon/>註冊成功</label>
@@ -42,7 +42,7 @@ export default {
     userName: '',
     userEmail: '',
     userPass: '',
-    errorText: false,
+    errorText: '',
     successText: false
   }),
   components: {
@@ -80,9 +80,9 @@ export default {
           this.successText = false
         }
       } catch (error) {
-        console.log(error)
+        console.log(error.response)
         this.successText = false
-        this.errorText = true
+        this.errorText = error.response.data
       }
     }
   }
