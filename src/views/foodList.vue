@@ -208,6 +208,9 @@ export default {
         fat: 0
       },
       graphData: [],
+      chartOptions: {
+        cutoutPercentage: 50
+      },
       chartData: {
         labels: ['carbo', 'protein', 'fat', 'other'],
         datasets: [
@@ -547,6 +550,17 @@ export default {
     overflow-x: hidden;
     padding: 10px;
     height: 40vh;
+    &::-webkit-scrollbar{
+      width: 5px;
+      background-color: #d8d8d8;
+      border-radius: 100px;
+    }
+    &::-webkit-scrollbar-thumb{
+      width: 5px;
+      background-color: #c6e5ff;
+      border-radius: 10px;
+    }
+
   }
   .result-row{
     display: flex;
