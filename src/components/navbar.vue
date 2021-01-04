@@ -104,6 +104,8 @@ export default {
   justify-content: space-around;
   display: flex;
   div{
+    background: white;
+    height: 10px;
     &:first-child{
       content: "";
       transition: 0.3s linear;
