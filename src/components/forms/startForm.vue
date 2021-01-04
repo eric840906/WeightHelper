@@ -1,6 +1,6 @@
 <template>
-  <div class="back">
-    <div class="formContainer col-md-6">
+  <div class="back" @click="closeForm">
+    <div class="formContainer col-md-6" @click.stop>
       <div>
         <h3>請選擇服務:</h3>
         <ul class="serviceList">
@@ -12,3 +12,13 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    closeForm (e) {
+      this.$router.push({ path: '/' })
+    }
+  }
+}
+</script>

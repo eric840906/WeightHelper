@@ -1,6 +1,6 @@
 <template>
-  <div class="back">
-    <div class="formContainer col-md-6">
+  <div class="back" @click="closeForm">
+    <div class="formContainer col-md-6" @click.stop>
       <div>
         <h3>是否了解自己的基礎代謝率?</h3>
         <div class="ynBtns">
@@ -10,3 +10,13 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    closeForm (e) {
+      this.$router.push({ path: '/' })
+    }
+  }
+}
+</script>

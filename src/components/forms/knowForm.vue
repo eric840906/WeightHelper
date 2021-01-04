@@ -1,6 +1,6 @@
 <template>
-  <div class="back">
-    <div class="formContainer col-md-6">
+  <div class="back" @click="closeForm">
+    <div class="formContainer col-md-6" @click.stop>
       <div>
         <h3>請輸入基礎代謝率</h3>
         <form action="" @submit.prevent='getBmr'>
@@ -24,6 +24,9 @@ export default {
       console.log(e.target[0].valueAsNumber)
       localStorage.setItem('BMR', JSON.stringify(e.target[0].valueAsNumber))
       vm.$router.push('/tdeeForm')
+    },
+    closeForm (e) {
+      this.$router.push({ path: '/' })
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="back">
-    <div class="formContainer col-md-6">
+  <div class="back" @click="closeForm">
+    <div class="formContainer col-md-6" @click.stop>
       <div>
         <form action="" @submit.prevent="calcBmr">
           <p>性別</p>
@@ -33,6 +33,9 @@ export default {
     return {}
   },
   methods: {
+    closeForm (e) {
+      this.$router.push({ path: '/' })
+    },
     calcBmr (e) {
       const vm = this
       console.log(e)

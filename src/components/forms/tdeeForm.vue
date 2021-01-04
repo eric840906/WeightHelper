@@ -1,6 +1,6 @@
 <template>
-  <div class="back">
-    <div class="formContainer col-md-6">
+  <div class="back" @click="closeForm">
+    <div class="formContainer col-md-6" @click.stop>
       <div>
         <h3>您的基礎代謝率為 <Counter
           :delay="delay"
@@ -42,6 +42,9 @@ export default {
     }
   },
   methods: {
+    closeForm (e) {
+      this.$router.push({ path: '/' })
+    },
     userBmr () {
       const vm = this
       vm.userBMR = localStorage.getItem('BMR')

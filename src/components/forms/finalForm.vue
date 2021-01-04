@@ -1,6 +1,6 @@
 <template>
-  <div class="back">
-    <div class="formContainer col-md-6" style="flex-direction: column;">
+  <div class="back" @click="closeForm">
+    <div class="formContainer col-md-6" style="flex-direction: column;" @click.stop>
       <div>
         <h3>經過計算後</h3>
         <ul class="nutritionList">
@@ -61,6 +61,9 @@ export default {
     }
   },
   methods: {
+    closeForm (e) {
+      this.$router.push({ path: '/' })
+    },
     userTdee () {
       const vm = this
       vm.userTDEE = localStorage.getItem('TDEE')
