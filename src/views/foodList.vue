@@ -449,6 +449,15 @@ export default {
       instance.update(vm.calculateList.fat)
     }
   },
+  beforeCreate () {
+    if (!this.$store.state.target) {
+      if (localStorage.getItem('target')) {
+        return {}
+      } else {
+        this.$router.push({ path: '/startForm' })
+      }
+    }
+  },
   created () {
     this.getFood()
     this.getToday()

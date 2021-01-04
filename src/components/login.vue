@@ -65,14 +65,36 @@ export default {
           password: this.userPass
         })
         if (response.status === 200) {
+          this.$store.commit('LOGIN_SUCCESS', response)
           console.log(response)
           localStorage.setItem('WHUser', JSON.stringify(response.data))
-          this.successText = true
-          this.loading = true
-          await setTimeout(() => this.$store.commit('LOGIN_SUCCESS', response), 1000)
-          await setTimeout(() => { this.loading = false }, 1000)
-          await setTimeout(() => this.$modal.hideAll(), 2000)
-          this.$router.push({ path: '/foodlist' })
+          this.axios({
+            url: `${process.env.VUE_APP_APIPATH}/api/target`,
+            methods: 'get',
+            headers: {
+              'auth-token': response.data
+            }
+          }).then(response => localStorage.setItem('target', JSON.stringify(response.data.target))).then(() => {
+            this.successText = true
+            this.loading = true
+            setTimeout(() => { this.loading = false }, 1000)
+            setTimeout(() => this.$modal.hideAll(), 2000)
+            this.axios({
+              url: `${process.env.VUE_APP_APIPATH}/api/auth/getuser`,
+              method: 'post',
+              headers: {
+                'auth-token': this.$store.state.token
+              }
+            }).then(response => this.$store.commit('GET_USER_INFO', response.data))
+              .catch(error => console.log(error))
+          }).then(() => {
+            if (localStorage.getItem('target') === 'undefined') {
+              this.$router.push({ path: '/startForm' })
+            } else {
+              this.$router.push({ path: '/foodlist' })
+            }
+          }
+          )
         } else {
           this.errorText = true
         }

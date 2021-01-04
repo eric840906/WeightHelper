@@ -3,11 +3,19 @@
     <div class="sidebar-container primary lighten-3" :class="{'sidebar-active' : sidebarToggle}">
       <!-- <a class="sidebar-btn" @click.prevent="selfToggle"><menu-icon /></a> -->
       <a href="#" class="sidebar-config"><cog-icon/></a>
-      <!-- <img src="../assets/taipei-large.png" alt="" class="brand-logo"> -->
+      <div class="userblock" v-if="this.$store.state.user">
+        <img src="../assets/image/guest.jpg" alt="" class="user-pic">
+        <div class="user-name"><user-icon/>{{this.$store.state.user.name}}</div>
+        <div class="user-email"><mail-icon/>{{this.$store.state.user.email}}</div>
+      </div>
+      <div class="userblock" v-else>
+        <img src="../assets/image/guest.jpg" alt="" class="user-pic">
+        <div class="user-name">guest</div>
+      </div>
       <nav>
         <ul class="sidebar-menu">
           <li v-for="link in navLinks" :key="link.linkName">
-            <router-link class="black--text sidebar-link" :to="link.link" @click.prevent='link.open=!link.open'><component :is="link.icon"></component><span class="link-name">{{link.linkName}}</span>
+            <router-link class="black--text sidebar-link" :to="link.link"><component :is="link.icon"></component><span class="link-name">{{link.linkName}}</span>
             </router-link>
           </li>
           <li v-if="this.$store.state.token">
@@ -38,6 +46,9 @@ import signUpIcon from 'vue-material-design-icons/Draw.vue'
 import logoutIcon from 'vue-material-design-icons/LogoutVariant.vue'
 import addFoodIcon from 'vue-material-design-icons/PencilPlusOutline.vue'
 import chartIcon from 'vue-material-design-icons/ChartTimelineVariantShimmer.vue'
+import userIcon from 'vue-material-design-icons/AccountCircle.vue'
+import mailIcon from 'vue-material-design-icons/Email.vue'
+
 export default {
   components: {
     homeIcon,
@@ -48,7 +59,9 @@ export default {
     signUpIcon,
     logoutIcon,
     addFoodIcon,
-    chartIcon
+    chartIcon,
+    userIcon,
+    mailIcon
   },
   props: {
     sidebarToggle: {
@@ -132,12 +145,25 @@ a{
   //   color: lighten($background-text, 20%);
   // }
 }
-.brand-logo{
-  height: 123px;
-  width: 109px;
-  margin-top: 50px;
-  align-self: center;
+.userblock{
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .user-pic{
+    border-radius: 50%;
+    width: 109px;
+    margin-top: 50px;
+    align-self: center;
+  }
+  .material-design-icon{
+    svg{
+      height: 20px;
+      vertical-align: sub;
+    }
+  }
 }
+
 .sidebar-background{
   width: 100%;
   height: 100%;

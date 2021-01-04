@@ -52,6 +52,7 @@ export default {
   },
   created () {
     this.$store.commit('CHECK_USER', JSON.parse(localStorage.getItem('WHUser')) || null)
+    this.$store.dispatch('getUser')
   }
 }
 </script>

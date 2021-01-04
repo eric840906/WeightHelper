@@ -77,6 +77,18 @@ export default {
         carbo: Math.round(vm.userTDEE * 0.8 * 0.4 / 4),
         fat: Math.round(vm.userTDEE * 0.8 * 0.3 / 9)
       }
+      if (this.$store.state.token) {
+        this.axios({
+          url: `${process.env.VUE_APP_APIPATH}/api/target`,
+          method: 'post',
+          headers: {
+            'auth-token': this.$store.state.token
+          },
+          data: {
+            target: vm.target
+          }
+        })
+      }
       console.log(vm.target)
       localStorage.setItem('target', JSON.stringify(vm.target))
     },
