@@ -1,11 +1,20 @@
 <template>
   <div>
     <section class="banner">
-      <div class="circle xxlarge shade1"></div>
-      <div class="circle xlarge shade2"></div>
-      <div class="circle large shade3"></div>
-      <div class="circle mediun shade4"></div>
-      <div class="circle small shade5"></div>
+      <div class="circle-container">
+        <div class="circle xxlarge shade1"></div>
+        <div class="circle xlarge shade2"></div>
+        <div class="circle large shade3"></div>
+        <div class="circle mediun shade4"></div>
+        <div class="circle small shade5"></div>
+      </div>
+      <div class="circle2-container">
+        <div class="circle2 xxlarge shade1"></div>
+        <div class="circle2 xlarge shade2"></div>
+        <div class="circle2 large shade3"></div>
+        <div class="circle2 mediun shade4"></div>
+        <div class="circle2 small shade5"></div>
+      </div>
       <div class="title">
         <h1 class="name">WEIGHT</h1>
         <span class="subName">HELPER</span>
@@ -138,6 +147,16 @@ export default {
     }
   }
   // background
+  .circle-container{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+  .circle2-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
   .circle{
     position: absolute;
     border-radius: 50%;
@@ -146,6 +165,16 @@ export default {
     box-shadow: 0px 0px 1px 0px #508fb9;
     @media (max-width: 768px) {
       animation: rippleSmall 15s infinite;
+    }
+  }
+  .circle2{
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: ripple2Main 15s infinite;
+    box-shadow: 0px 0px 1px 0px #508fb9;
+    @media (max-width: 768px) {
+      animation: ripple2Small 15s infinite;
     }
   }
 
@@ -229,6 +258,32 @@ export default {
       background: #ffddc1;
     }
   }
+  @keyframes ripple2Main{
+    0%{
+      transform: scale(1);
+      background: #ffddc1;
+    }
+    20%{
+      transform: scale(0.8);
+      background: #c1cdff;
+    }
+    40%{
+      transform: scale(1.2);
+      background: #c1ffc1;
+    }
+    60%{
+      transform: scale(0.7);
+      background: #c1cdff;
+    }
+    80%{
+      transform: scale(1.4);
+      background: #ffc1c1;
+    }
+    100%{
+      transform: scale(1);
+      background: #ffddc1;
+    }
+  }
   @keyframes rippleSmall{
     0%{
       transform: scale(0.5);
@@ -248,6 +303,32 @@ export default {
     }
     80%{
       transform: scale(0.35);
+      background: #ffc1c1;
+    }
+    100%{
+      transform: scale(0.5);
+      background: #ffddc1;
+    }
+  }
+  @keyframes ripple2Small{
+    0%{
+      transform: scale(0.5);
+      background: #ffddc1;
+    }
+    20%{
+      transform: scale(0.4);
+      background: #c1cdff;
+    }
+    40%{
+      transform: scale(0.6);
+      background: #c1ffc1;
+    }
+    60%{
+      transform: scale(0.35);
+      background: #c1cdff;
+    }
+    80%{
+      transform: scale(0.7);
       background: #ffc1c1;
     }
     100%{
