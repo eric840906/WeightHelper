@@ -41,7 +41,7 @@ export default {
         }
       } catch (error) {
         console.log(error.response)
-        this.$store.state.token = null
+        this.$store.commit('LOGOUT')
         this.$router.push({ path: '/error' })
       }
     }

@@ -42,7 +42,7 @@ router.beforeEach(async (to, from, next) => {
         next()
       }
     } catch (error) {
-      store.state.token = null
+      store.commit('LOGOUT')
       next({
         path: '/error'
       })

@@ -21,7 +21,6 @@ export default {
   methods: {
     getBmr (e) {
       const vm = this
-      console.log(e.target[0].valueAsNumber)
       localStorage.setItem('BMR', JSON.stringify(e.target[0].valueAsNumber))
       vm.$router.push('/tdeeForm')
     },

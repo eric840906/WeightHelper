@@ -80,7 +80,6 @@ export default {
           this.successText = false
         }
       } catch (error) {
-        console.log(error.response)
         this.successText = false
         this.errorText = error.response.data
       }

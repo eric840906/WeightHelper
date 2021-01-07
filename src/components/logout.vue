@@ -18,6 +18,7 @@ export default {
   }),
   methods: {
     logOut () {
+      localStorage.removeItem('target')
       this.$store.commit('LOGOUT')
       localStorage.setItem('WHUser', null)
       this.$modal.hideAll()

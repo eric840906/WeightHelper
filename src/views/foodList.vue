@@ -273,7 +273,17 @@ export default {
       if (canAdd) {
         vm.planFoods.push(vm.foods.find(item => item._id === id))
       } else {
-        console.log('加過了')
+        this.$modal.show('dialog', {
+          title: '此食物已經在計畫中',
+          buttons: [
+            {
+              title: 'OK',
+              handler: () => {
+                this.$modal.hide('dialog')
+              }
+            }
+          ]
+        })
       }
       localStorage.setItem('currentList', JSON.stringify(vm.planFoods))
     },
@@ -419,7 +429,7 @@ export default {
           })
         }
       } catch (error) {
-        if (error.response.data === 'Invalid token, please relog') this.$store.state.token = null
+        if (error.response.data === 'Invalid token, please relog') this.$store.commit('LOGOUT')
         this.recordBtn.text = error.response.data
         setTimeout(() => this.$modal.show(login, {}, { height: 'auto', width: '300px' }), 1000)
       }
@@ -450,12 +460,14 @@ export default {
     }
   },
   beforeCreate () {
-    if (!this.$store.state.target) {
+    if (this.$store.state.target) {
       if (localStorage.getItem('target')) {
         return {}
       } else {
         this.$router.push({ path: '/startForm' })
       }
+    } else {
+      this.$router.push({ path: '/startForm' })
     }
   },
   created () {

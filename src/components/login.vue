@@ -66,7 +66,6 @@ export default {
         })
         if (response.status === 200) {
           this.$store.commit('LOGIN_SUCCESS', response)
-          console.log(response)
           localStorage.setItem('WHUser', JSON.stringify(response.data))
           this.axios({
             url: `${process.env.VUE_APP_APIPATH}/api/target`,
@@ -85,21 +84,23 @@ export default {
               headers: {
                 'auth-token': this.$store.state.token
               }
-            }).then(response => this.$store.commit('GET_USER_INFO', response.data))
-              .catch(error => console.log(error))
+            }).then(response => {
+              this.$store.commit('GET_USER_INFO', response.data)
+              this.$store.dispatch('getAvatar')
+            })
+              .catch(error => console.log(error.response))
           }).then(() => {
             if (localStorage.getItem('target') === 'undefined') {
               this.$router.push({ path: '/startForm' })
             } else {
               this.$router.push({ path: '/foodlist' })
             }
-          }
-          )
+          })
         } else {
           this.errorText = true
         }
       } catch (error) {
-        console.log(error)
+        console.log(error.response)
         this.errorText = true
       }
     }

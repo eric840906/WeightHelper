@@ -72,7 +72,6 @@ export default {
           'auth-token': this.$store.state.token
         }
       })
-      console.log(response)
       this.analyzeData.labels = response.data.map(item => item.date)
       this.analyzeData.label = Object.keys(response.data[0].todayInfo)
       this.analyzeData.calories = response.data.map(item => item.todayInfo.calories)

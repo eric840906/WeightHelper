@@ -87,9 +87,8 @@ export default {
           data: {
             target: vm.target
           }
-        })
+        }).then(() => this.$store.dispatch('getTarget'))
       }
-      console.log(vm.target)
       localStorage.setItem('target', JSON.stringify(vm.target))
     },
     onCalories (instance, CountUp) {

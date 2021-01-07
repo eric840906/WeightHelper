@@ -3,10 +3,17 @@
     <div class="sidebar-container primary lighten-3" :class="{'sidebar-active' : sidebarToggle}">
       <!-- <a class="sidebar-btn" @click.prevent="selfToggle"><menu-icon /></a> -->
       <a href="#" class="sidebar-config"><cog-icon/></a>
-      <div class="userblock" v-if="this.$store.state.user">
-        <img src="../assets/image/guest.jpg" alt="" class="user-pic">
-        <div class="user-name"><user-icon/>{{this.$store.state.user.name}}</div>
-        <div class="user-email"><mail-icon/>{{this.$store.state.user.email}}</div>
+      <div class="userblock" v-if="userInfo">
+        <div class="avatar">
+          <div class="loading-block" v-show="this.$store.state.loading">
+            <font-awesome-icon class="fa-spin" style="font-size: 50px" :icon="['fas', 'circle-notch']"/>
+          </div>
+          <img src="../assets/image/guest.jpg" alt="" class="user-pic" v-if="userImage==='data:image/png;base64, '">
+          <img :src="userImage" alt="" class="user-pic" v-else>
+          <button class="avatar-btn" @click.prevent="changeAvatar"><camera-icon/></button>
+        </div>
+        <div class="user-name"><user-icon/>{{userInfo.name}}</div>
+        <div class="user-email"><mail-icon/>{{userInfo.email}}</div>
       </div>
       <div class="userblock" v-else>
         <img src="../assets/image/guest.jpg" alt="" class="user-pic">
@@ -48,6 +55,7 @@ import addFoodIcon from 'vue-material-design-icons/PencilPlusOutline.vue'
 import chartIcon from 'vue-material-design-icons/ChartTimelineVariantShimmer.vue'
 import userIcon from 'vue-material-design-icons/AccountCircle.vue'
 import mailIcon from 'vue-material-design-icons/Email.vue'
+import cameraIcon from 'vue-material-design-icons/CameraEnhanceOutline.vue'
 
 export default {
   components: {
@@ -61,7 +69,8 @@ export default {
     addFoodIcon,
     chartIcon,
     userIcon,
-    mailIcon
+    mailIcon,
+    cameraIcon
   },
   props: {
     sidebarToggle: {
@@ -91,22 +100,6 @@ export default {
   methods: {
     logOut () {
       this.$emit('logoutShow')
-      // this.$store.commit('LOGOUT')
-      // localStorage.setItem('WHUser', null)
-      // console.log(123)
-      // this.$modal.show('dialog', {
-      //   title: '<h4 style="color: #ff4436;"><svg data-v-2020db48="" fill="currentColor" width="80" height="80" viewBox="0 0 24 24" class="material-design-icon__svg"><path data-v-2020db48="" d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16"><title data-v-2020db48="">Alert Outline icon</title></path></svg><h4>確定要登出嗎?</h4>',
-      //   buttons: [
-      //     {
-      //       title: '確定',
-      //       handler: () => {
-      //         this.$store.commit('LOGOUT')
-      //         localStorage.setItem('WHUser', null)
-      //         this.$modal.hide('dialog')
-      //       }
-      //     }
-      //   ]
-      // })
     },
     selfToggle () {
       this.$emit('selfToggle')
@@ -119,11 +112,17 @@ export default {
     },
     addModalShow () {
       this.$emit('addModalShow')
+    },
+    changeAvatar () {
+      this.$emit('changeAvatar')
     }
   },
   computed: {
     userInfo () {
-      return this.$store.state.userInfo
+      return this.$store.state.user
+    },
+    userImage () {
+      return this.$store.state.image
     }
   }
 
@@ -141,9 +140,6 @@ export default {
 a{
   text-decoration: none;
   color: #fff;
-  // &:hover{
-  //   color: lighten($background-text, 20%);
-  // }
 }
 .userblock{
   color: #fff;
@@ -163,7 +159,36 @@ a{
     }
   }
 }
-
+.loading-block{
+  position: absolute;
+  background: black;
+  top: 50%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar{
+  position: relative;
+  .avatar-btn{
+    position: absolute;
+    top: 29px;
+    background: #ffffff1f;
+    color: white;
+    border-radius: 100%;
+    height: 35px;
+    width: 35px;
+    text-align: center;
+    padding: 0px;
+    border: none;
+    border-width: thin;
+    right: -19px;
+    border-color: white;
+  }
+}
 .sidebar-background{
   width: 100%;
   height: 100%;
@@ -174,7 +199,6 @@ a{
   z-index: 6;
 }
 .sidebar-container{
-  // background-image: linear-gradient(332deg, $tab-color 79%, #ffffff 125%);
   background-color: #000;
   display: flex;
   flex-direction: column;

@@ -2,9 +2,16 @@
   <div id="app">
     <v-dialog />
     <modal name="modal"/>
-    <Alert></Alert>
     <Navbar @drawerToggle='drawer = !drawer' :toggle='drawer'></Navbar>
-    <sideBar :sidebarToggle='drawer' @selfToggle='drawer = !drawer' @loginShow='toggleLogin' @signUpShow='toggleSignup' @addModalShow='showAddModal' @logoutShow='showLogout'></sideBar>
+    <sideBar
+      :sidebarToggle='drawer'
+      @selfToggle='drawer = !drawer'
+      @loginShow='toggleLogin'
+      @signUpShow='toggleSignup'
+      @addModalShow='showAddModal'
+      @logoutShow='showLogout'
+      @changeAvatar='showChange'>
+    </sideBar>
     <div style="padding-top: 7vh"></div>
     <transition name="fade">
       <router-view/>
@@ -17,14 +24,13 @@ import Navbar from '@/components/navbar.vue'
 import sideBar from '@/components/sideBar.vue'
 import login from '@/components/login.vue'
 import signUp from '@/components/signUp.vue'
-import Alert from '@/components/Alert.vue'
 import addFood from './components/addFood.vue'
 import logout from '@/components/logout.vue'
+import avatarWindow from '@/components/avatarChange.vue'
 export default {
   components: {
     Navbar,
-    sideBar,
-    Alert
+    sideBar
   },
   data: () => ({
     drawer: false,
@@ -46,13 +52,14 @@ export default {
     showAddModal () {
       this.$modal.show(addFood, {}, { height: 'auto', width: '300px' })
     },
-    closeModal () {
-      console.log(123)
+    showChange () {
+      this.$modal.show(avatarWindow, {}, { height: 'auto', width: '300px' })
     }
   },
   created () {
     this.$store.commit('CHECK_USER', JSON.parse(localStorage.getItem('WHUser')) || null)
     this.$store.dispatch('getUser')
+    this.$store.dispatch('getAvatar')
   }
 }
 </script>
