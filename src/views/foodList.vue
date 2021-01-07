@@ -460,12 +460,8 @@ export default {
     }
   },
   beforeCreate () {
-    if (this.$store.state.target) {
-      if (localStorage.getItem('target')) {
-        return {}
-      } else {
-        this.$router.push({ path: '/startForm' })
-      }
+    if (localStorage.getItem('target')) {
+      return {}
     } else {
       this.$router.push({ path: '/startForm' })
     }
