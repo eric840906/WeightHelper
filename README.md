@@ -1,4 +1,4 @@
-# getfit
+# Weight helper
 
 ## Project setup
 ```
