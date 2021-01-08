@@ -115,7 +115,7 @@
 
 ### 使用者圖片上傳
 點擊圖片右上角的相機按紐會跳出此畫面<br>
-![](https://i.imgur.com/zQFH4Po.png)
+![](https://i.imgur.com/zQFH4Po.png)<br>
 可以在上傳前對圖片進行調整及預覽<br>
 ![](https://i.imgur.com/jyLDdvj.png)
 
